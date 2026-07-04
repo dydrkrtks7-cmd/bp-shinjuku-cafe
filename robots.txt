@@ -7,4 +7,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://shinjuku-cafe.pages.dev/sitemap.xml
+Sitemap: https://shinjuku-cafe-local.pbn-builder.xyz/sitemap.xml
