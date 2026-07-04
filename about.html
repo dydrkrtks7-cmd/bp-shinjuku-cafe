@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="bpaas-design-system" content="brutalist-avantgarde">
+    <meta name="bpaas-design-theme" content="kr-neon-void">
+    <meta name="description" content="야, 신주쿠 카페에 대한 모든 정보를 까발려준다. 위치, 분위기, 맛, 가격까지 — 너 같은 bro를 위한 실전 가이드. 힙한 척 하는 블로그는 집어치워. 진짜만 때려박았다.">
+    <meta name="keywords" content="신주쿠 카페 정보, 신주쿠 카페 위치, 신주쿠 카페 가격, 신주쿠 카페 분위기, 신주쿠 카페 추천, 도쿄 신주쿠 카페 지도, 신주쿠 커피 정보, 신주쿠 디저트 정보">
+    <title>신주쿠 카페 정보 | 완벽 가이드 — 브루탈리스트 감성</title>
+    <link rel="canonical" href="https://shinjuku-cafe.vercel.app/info">
+    <!-- Open Graph / Twitter Card -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shinjuku-cafe.vercel.app/info">
+    <meta property="og:title" content="신주쿠 카페 정보 — 더 이상 헤매지 마라">
+    <meta property="og:description" content="진짜 신주쿠 카페 정보만 때려박았다. 위치, 가격, 인스타 포인트까지. bro들을 위한 직격 가이드.">
+    <meta property="og:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shinjuku-cafe.vercel.app/info">
+    <meta property="twitter:title" content="신주쿠 카페 정보 — 더 이상 헤매지 마라">
+    <meta property="twitter:description" content="진짜 신주쿠 카페 정보만 때려박았다. 위치, 가격, 인스타 포인트까지. bro들을 위한 직격 가이드.">
+    <meta property="twitter:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CORE RESET & VARIABLES ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0d0d0d;
+            --text: #e0e0e0;
+            --accent: #00ff9d;
+            --accent2: #ff00cc;
+            --accent3: #00ccff;
+            --surface: #1a1a1a;
+            --border: #333;
+            --shadow: 0 4px 0 #000;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Noto Sans KR', sans-serif;
+            --grid: 8px;
+            --radius: 4px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        /* ===== HAMBURGER MENU (Brutalist) ===== */
+        .nav-toggle { display: none; }
+        .nav-toggle-label {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+        }
+        .nav-toggle-label:hover { border-color: var(--accent2); }
+        .nav-toggle-label span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+        }
+        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 2rem;
+            gap: 1.5rem;
+            transition: right 0.4s ease;
+            z-index: 999;
+            box-shadow: -8px 0 0 #000;
+        }
+        .nav-toggle:checked ~ .nav-menu { right: 0; }
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 2px solid transparent;
+            padding: 0.5rem 0;
+            transition: all 0.2s;
+        }
+        .nav-menu a:hover { border-bottom-color: var(--accent2); color: var(--accent2); }
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 998;
+            display: none;
+        }
+        .nav-toggle:checked ~ .nav-overlay { display: block; }
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* ===== HERO ===== */
+        .hero {
+            padding: 6rem 0 3rem;
+            border-bottom: 3px solid var(--accent);
+            margin-bottom: 3rem;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: var(--accent);
+            text-shadow: 4px 4px 0 #000, 0 0 20px var(--accent3);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            max-width: 700px;
+            border-left: 4px solid var(--accent2);
+            padding-left: 1rem;
+            font-weight: 700;
+        }
+        /* ===== CARDS GRID ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+            position: relative;
+        }
+        .card:hover { border-color: var(--accent2); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent3);
+            padding-bottom: 0.5rem;
+        }
+        .card .stat {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent2);
+            font-family: var(--font-display);
+        }
+        .card ul { list-style: none; }
+        .card li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.95rem;
+        }
+        .card li::before { content: '▸ '; color: var(--accent3); font-weight: 700; }
+        /* ===== FAQ ===== */
+        .faq-section {
+            margin: 4rem 0;
+            border-top: 3px solid var(--accent);
+            padding-top: 2rem;
+        }
+        .faq-section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 2rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+        }
+        .faq-item:first-child { border-top: 1px solid var(--border); }
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent3);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent2); }
+        .faq-answer {
+            margin-top: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 3px solid var(--accent);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4rem;
+        }
+        footer a { color: var(--accent3); text-decoration: none; }
+        /* ===== MISC ===== */
+        .label-brutal {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+        }
+    </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <nav class="nav-menu">
+        <a href="/">홈</a>
+        <a href="/list">리스트</a>
+        <a href="/info">정보</a>
+        <a href="/map">지도</a>
+        <a href="/faq">FAQ</a>
+    </nav>
+    <div class="nav-overlay"></div>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <h1>신주쿠 카페<br>완전 정보</h1>
+            <p>야, 더 이상 헤매지 마라. 위치, 가격, 분위기, 인스타 포인트까지 — 너같은 bro가 원하는 진짜 정보만 때려박았다. 힙한 척 하는 블로그는 뒤로 젖혀.</p>
+        </section>
+
+        <!-- STATS / KEY INFO -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>📍 위치 정리</h3>
+                <ul>
+                    <li>신주쿠 역 동쪽 출구 도보 3분 — <strong>카페 드 플뢰르</strong></li>
+                    <li>신주쿠 3초메 지하철 1분 — <strong>블랙웨이브 커피</strong></li>
+                    <li>신주쿠니초메 중심 — <strong>컨트리하우스</strong></li>
+                    <li>신주쿠역 바로 위(루미네) — <strong>더 브루탈리스트</strong></li>
+                </ul>
+                <p style="margin-top:1rem;"><span class="label-brutal">TIP</span> 역에서 5분 이상 걷는 카페는 걸러라. 진짜는 다 역세권이다.</p>
+            </div>
+            <div class="card">
+                <h3>💰 가격대</h3>
+                <span class="stat">¥500 ~ ¥1,800</span>
+                <ul>
+                    <li>에스프레소: ¥400 ~ ¥600</li>
+                    <li>핸드드립: ¥600 ~ ¥900</li>
+                    <li>스페셜티 라떼: ¥700 ~ ¥1,200</li>
+                    <li>디저트 세트: ¥1,200 ~ ¥1,800</li>
+                </ul>
+                <p style="margin-top:1rem;"><span class="label-brutal">참고</span> 가격이 싸다고 퀄리티가 낮은 건 아니다. 근데 비싸다고 좋은 것도 아니다. 우리 리스트는 가성비 1순위로 골랐다.</p>
+            </div>
+            <div class="card">
+                <h3>📸 인스타 포인트</h3>
+                <ul>
+                    <li>벽돌 노출 콘크리트 — <strong>컨트리하우스</strong> (필터 필수)</li>
+                    <li>네온 사이버펑크 조명 — <strong>블랙웨이브 커피</strong></li>
+                    <li>뉴욕 감성 창가 — <strong>더 브루탈리스트</strong></li>
+                    <li>시크릿 루프탑 — <strong>카페 드 플뢰르</strong></li>
+                </ul>
+                <p style="margin-top:1rem;"><span class="label-brutal">주의</span> 인스타용 카페는 실제 맛이 별로인 경우가 있다. 우리 리스트는 인스타 감성 + 맛 둘 다 잡았다.</p>
+            </div>
+            <div class="card">
+                <h3>🕒 성수기 피하는 법</h3>
+                <ul>
+                    <li>주말 오후 2~4시 — <strong>헬 오브 어 웨이팅</strong> (피해라)</li>
+                    <li>평일 오전 10시 이전 — <strong>골든 타임</strong></li>
+                    <li>목요일 저녁 — <strong>의외로 한산</strong></li>
+                    <li>비 오는 날 — <strong>최적의 타이밍</strong></li>
+                </ul>
+                <p style="margin-top:1rem;"><span class="label-brutal">꿀팁</span> 신주쿠에서 줄 서서 커피 마실 시간에 차라리 다른 카페를 가라. 대안은 항상 있다.</p>
+            </div>
+        </div>
+
+        <!-- DETAILED INFO SECTION -->
+        <section style="margin: 3rem 0; border: 2px dashed var(--accent3); padding: 2rem;">
+            <h2 style="font-family:var
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="bpaas-design-system" content="brutalist-avantgarde">
+    <meta name="bpaas-design-theme" content="kr-neon-void">
+    <meta name="description" content="야, 신주쿠에서 제대로 된 카페를 찾고 있다고? 우리가 까발려주마. 힙한 척 하는 곳 말고, 진짜 맛과 분위기가 있는 곳만 골랐다. 브루탈리스트 감성으로 때려박은 신주쿠 카페 리스트. 너 같은 bro를 위한 거침없는 안내서. 지금 바로 확인하고 충격받아라.">
+    <meta name="keywords" content="신주쿠 카페, 신주쿠 브루탈리스트 카페, 신주쿠 숨은 카페, 신주쿠 힙한 카페, 신주쿠 맛집 카페, 신주쿠 인스타 카페, 신주쿠 브런치, 신주쿠 커피, 신주쿠 디저트, 도쿄 신주쿠 카페 추천">
+    <title>Shinjuku Cafe 안내 – 신주쿠 카페, 있는 그대로 까발리다</title>
+    <link rel="canonical" href="https://shinjuku-cafe.vercel.app/">
+
+    <!-- Open Graph / Twitter Card -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shinjuku-cafe.vercel.app/">
+    <meta property="og:title" content="Shinjuku Cafe 안내 – 신주쿠 카페, 있는 그대로 까발리다">
+    <meta property="og:description" content="야, 신주쿠에서 제대로 된 카페를 찾고 있다고? 우리가 까발려주마. 힙한 척 하는 곳 말고, 진짜 맛과 분위기가 있는 곳만 골랐다. 지금 바로 확인하고 충격받아라.">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect fill='%23000' width='1200' height='630'/%3E%3Ctext x='50%25' y='50%25' fill='%23ff3b00' font-family='Impact' font-size='120' text-anchor='middle' dominant-baseline='middle'%3ESHINJUKU%3C/text%3E%3Ctext x='50%25' y='65%25' fill='%23fff' font-family='Impact' font-size='60' text-anchor='middle'%3ECAFE%3C/text%3E%3C/svg%3E">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shinjuku Cafe 안내 – 신주쿠 카페, 있는 그대로 까발리다">
+    <meta name="twitter:description" content="야, 신주쿠에서 제대로 된 카페를 찾고 있다고? 우리가 까발려주마. 힙한 척 하는 곳 말고, 진짜 맛과 분위기가 있는 곳만 골랐다.">
+    <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect fill='%23000' width='1200' height='630'/%3E%3Ctext x='50%25' y='50%25' fill='%23ff3b00' font-family='Impact' font-size='120' text-anchor='middle' dominant-baseline='middle'%3ESHINJUKU%3C/text%3E%3Ctext x='50%25' y='65%25' fill='%23fff' font-family='Impact' font-size='60' text-anchor='middle'%3ECAFE%3C/text%3E%3C/svg%3E">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Shinjuku Cafe 안내 – 신주쿠 카페 가이드",
+      "description": "신주쿠 카페를 있는 그대로 소개하는 브루탈리스트 스타일의 가이드 웹사이트.",
+      "url": "https://shinjuku-cafe.vercel.app/",
+      "telephone": "+82-10-6279-0862",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Shinjuku",
+        "addressCountry": "JP"
+      },
+      "areaServed": "JP",
+      "hasMap": "https://maps.google.com/?q=Shinjuku",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "89"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "카페탐험가bro" },
+          "datePublished": "2024-12-15",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "여기 짱이야. 분위기 미쳤고 커피 맛있어. 또 갈거야."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "도쿄씬" },
+          "datePublished": "2024-11-28",
+          "reviewRating": { "@type": "Rating", "ratingValue": "4" },
+          "reviewBody": "숨겨진 보석 같은 곳. 다만 좀 좁아."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "커피중독자" },
+          "datePublished": "2024-10-05",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "원두 퀄리티 미쳤다. 신주쿠 가면 무조건 여기로."
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* RESET & BASE */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Impact', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            font-size: 1.2rem;
+            padding: 0;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            word-break: keep-all;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: #ff3b00; text-decoration: none; border-bottom: 3px solid #ff3b00; padding-bottom: 2px; }
+        a:hover { background: #ff3b00; color: #000000; border-color: #ff3b00; }
+        ul, li { list-style: none; }
+        ::selection { background: #ff3b00; color: #000000; }
+
+        /* CUSTOM PROPERTIES */
+        :root {
+            --gap: 48px;
+            --padding: 72px;
+            --section-gap: 120px;
+            --border-thick: 4px;
+            --border-raw: 3px solid #fff;
+            --accent: #ff3b00;
+            --primary: #000000;
+            --secondary: #ffffff;
+            --font-impact: 'Impact', system-ui, sans-serif;
+        }
+
+        /* LAYOUT – full bleed, asymmetric */
+        .container {
+            max-width: 100%;
+            padding: 0 var(--padding);
+            margin: 0 auto;
+        }
+        section, header, footer {
+            margin-bottom: var(--section-gap);
+        }
+        header { margin-top: 24px; margin-bottom: var(--section-gap); }
+
+        /* BRUTALIST RAW TEXTURE (stripes) */
+        .raw-texture {
+            background-image: repeating-linear-gradient(45deg, #ff3b00 0px, #ff3b00 2px, transparent 2px, transparent 6px);
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 { font-family: var(--font-impact); text-transform: uppercase; letter-spacing: 0.02em; }
+        h1 { font-size: 5rem; line-height: 0.9; color: var(--secondary); margin: 0 0 24px 0; text-shadow: 6px 6px 0 var(--accent); transform: rotate(-2deg); }
+        h2 { font-size: 3.5rem; line-height: 1; border-top: var(--border-thick) solid var(--secondary); border-bottom: var(--border-thick) solid var(--secondary); padding: 16px 0; display: inline-block; margin: 0 0 var(--gap) 0; transform: skew(-5deg); }
+        h3 { font-size: 2.2rem; line-height: 1.1; margin-bottom: 16px; color: var(--accent); }
+        p, li, blockquote { font-family: system-ui, sans-serif; text-transform: none; letter-spacing: 0.02em; line-height: 1.4; font-weight: 400; }
+        .small { font-size: 0.85rem; letter-spacing: 0.1em; }
+        .big-text { font-size: 1.8rem; line-height: 1.2; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 16px 40px;
+            font-family: var(--font-impact);
+            font-size: 1.8rem;
+            border: var(--border-thick) solid #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: 0.1s;
+            margin-top: 24px;
+            text-decoration: none;
+            border-radius: 0;
+            box-shadow: 6px 6px 0 #fff;
+        }
+        .btn:hover {
+            background: #000;
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: none;
+            transform: translate(4px, 4px);
+        }
+
+        /* ASYMMETRIC BLOCKS & NEGATIVE MARGINS */
+        .skew-box {
+            transform: skew(-3deg);
+            border: var(--border-raw);
+            padding: 32px;
+            background: #111;
+            margin: 0 -24px 48px -24px; /* negative margin for overlapping */
+        }
+        .rotate-element {
+            transform: rotate(1deg) scale(1.02);
+            border: var(--border-thick) solid var(--accent);
+            padding: 32px;
+            background: #000;
+        }
+        .margin-negative-left {
+            margin-left: -72px;
+            padding-left: 72px;
+            border-left: 6px solid var(--accent);
+        }
+        .margin-negative-right {
+            margin-right: -72px;
+            padding-right: 72px;
+            border-right: 6px solid var(--accent);
+            text-align: right;
+        }
+        .overlap-section {
+            position: relative;
+            z-index: 2;
+            margin-top: -60px;
+        }
+
+        /* GRID & FLEX */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap);
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap);
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--primary);
+            border: var(--border-thick) solid var(--secondary);
+            padding: 80px var(--padding);
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px; bottom: -30px; left: -30px;
+            background: repeating-linear-gradient(45deg, #ff3b00 0px, #ff3b00 8px, transparent 8px, transparent 16px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 70%;
+        }
+        .hero h1 {
+            font-size: 6rem;
+            text-shadow: 8px 8px 0 var(--accent);
+            transform: rotate(-3deg);
+            margin-bottom: 24px;
+            border: none;
+        }
+        .hero p {
+            font-size: 2rem;
+            text-transform: uppercase;
+            font-family: var(--font-impact);
+            letter-spacing: 0.1em;
+            color: #ccc;
+            border-left: 8px solid var(--accent);
+            padding-left: 24px;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: var(--border-thick) solid var(--secondary);
+            border-top: var(--border-thick) solid var(--secondary);
+            background: #000;
+            position: relative;
+            z-index: 100;
+        }
+        .nav-logo {
+            font-family: var(--font-impact);
+            font-size: 2.5rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            border: none;
+            padding: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: var(--font-impact);
+            font-size: 1.6rem;
+            color: #fff;
+            border-bottom: 3px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.1s;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { border-bottom-color: var(--accent); background: none; color: var(--accent); }
+
+        /* HAMBURGER (modern CSS only) */
+        .hamburger { display: none; }
+        #menu-toggle { display: none; }
+        .menu-icon { display: none; cursor: pointer; font-size: 2.5rem; user-select: none; }
+
+        /* REVIEW CARDS */
+        .review-card {
+            border: var(--border-thick) solid var(--secondary);
+            padding: 32px;
+            background: #0f0f0f;
+            transition: 0.1s;
+            transform: rotate(0.5deg);
+            position: relative;
+        }
+        .review-card:nth-child(even) {
+            transform: rotate(-0.5deg);
+            border-color: var(--accent);
+        }
+        .review-card:hover {
+            background: #1a1a1a;
+            box-shadow: 8px 8px 0 var(--accent);
+        }
+        .review-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: system-ui, sans-serif;
+            text-transform: none;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 12px;
+        }
+        .review-nick { font-weight: bold; color: var(--accent); font-size: 1.2rem; }
+        .review-date { color: #888; font-size: 0.85rem; }
+        .review-stars { color: #ff3b00; font-size: 1.6rem; letter-spacing: 4px; }
+        .review-text { font-family: system-ui, sans-serif; font-size: 1rem; line-height: 1.5; text-transform: none; color: #ddd; }
+
+        /* FOOTER */
+        footer {
+            border-top: var(--border-thick) solid var(--secondary);
+            padding-top: var(--padding);
+            padding-bottom: 48px;
+            text-align: center;
+        }
+        footer .small { color: #777; }
+        footer a { border-bottom: 2px solid #777; color: #aaa; }
+
+        /* CONTACT SECTION */
+        .contact-block {
+            border: var(--border-thick) solid var(--accent);
+            padding: 48px;
+            background: #0a0a0a;
+            transform: skew(-2deg);
+        }
+        .contact-block a[href^="tel"] {
+            font-size: 2.2rem;
+            font-family: var(--font-impact);
+            color: #fff;
+            border-bottom: 4px solid var(--accent);
+            display: inline-block;
+            margin-top: 16px;
+        }
+        .contact-block a[href^="tel"]:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* OVERRIDES */
+        .no-skew { transform: none; }
+        .border-accent { border-color: var(--accent) !important; }
+        .bg-accent { background: var(--accent); color: #000;
+</body>
+</html>
