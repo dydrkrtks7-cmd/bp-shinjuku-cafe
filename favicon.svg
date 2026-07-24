@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#111827"/><text x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#f9fafb">SH</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img">
+  <title>Shinjuku cafe 안내</title>
+  <rect width="64" height="64" rx="14" fill="hsl(278 42% 31%)"/>
+  <path d="M64 0v26L38 0Z" fill="hsl(38 68% 58%)" opacity="0.16"/>
+  <g transform="rotate(180 32 32)"><circle cx="32" cy="32" r="17" fill="none" stroke="hsl(278 24% 96%)" stroke-width="8"/><circle cx="32" cy="32" r="7" fill="hsl(38 68% 58%)"/></g>
+</svg>
