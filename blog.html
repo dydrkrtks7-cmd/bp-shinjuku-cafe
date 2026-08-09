@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="bpaas-design-system" content="brutalist-avantgarde">
-    <meta name="bpaas-design-theme" content="kr-neon-void">
-    <meta name="description" content="야, 신주쿠 카페 중에 제대로 된 곳이 어딘지 알고 싶다고? 블로그에서 다 까발린다. 힙한 척 하는 관광객 카페는 거르고, 진짜 맛과 분위기로 승부보는 곳만 전격 공개. 브루탈리스트 감성으로 갈아마신 카페 리뷰. 너 같은 bro를 위한 충격적 진실. 지금 바로 읽어봐라.">
-    <meta name="keywords" content="신주쿠 카페 블로그, 신주쿠 카페 리뷰, 신주쿠 브루탈리스트 카페 후기, 신주쿠 힙한 카페 추천, 신주쿠 맛집 카페 정보, 신주쿠 커피 전문점, 도쿄 신주쿠 카페 리스트, 진짜 신주쿠 카페">
-    <title>블로그 | 신주쿠 카페 브루탈리스트 가이드</title>
-    <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/blog.html">
-    <!-- Open Graph / Twitter Card -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="야, 신주쿠 카페 중에 제대로 된 건 이거다. 블로그에서 다 까발림">
-    <meta property="og:description" content="관광객용 카페는 그만. 진짜 신주쿠 카페의 맛과 분위기를 원한다면 여기만 봐라. 브루탈리스트 감성으로 추린 단 5곳.">
-    <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/blog.html">
-    <meta property="og:image" content="https://shinjuku-cafe.vercel.app/img/blog-og.jpg">
-    <meta property="og:locale" content="ko_KR">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@shinjuku_cafe_brutal">
-    <meta name="twitter:title" content="블로그 | 신주쿠 카페 브루탈리스트 가이드">
-    <meta name="twitter:description" content="관광객용 카페는 그만. 진짜 신주쿠 카페의 맛과 분위기를 원한다면 여기만 봐라.">
-    <meta name="twitter:image" content="https://shinjuku-cafe.vercel.app/img/blog-twitter.jpg">
-    <link rel="stylesheet" href="styles.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="야, 신주쿠 카페 중에 제대로 된 곳이 어딘지 알고 싶다고? 블로그에서 다 까발린다. 힙한 척 하는 관광객 카페는 거르고, 진짜 맛과 분위기로 승부보는 곳만 전격 공개. 브루탈리스트 감성으로 갈아마신 카페 리뷰. 너 같은 bro를 위한 충격적 진실. 지금 바로 읽어봐라.">
+ <meta name="keywords" content="신주쿠 카페 블로그, 신주쿠 카페 리뷰, 신주쿠 브루탈리스트 카페 후기, 신주쿠 힙한 카페 추천, 신주쿠 맛집 카페 정보, 신주쿠 커피 전문점, 도쿄 신주쿠 카페 리스트, 진짜 신주쿠 카페">
+ <title>블로그 | 신주쿠 카페 브루탈리스트 가이드</title>
+ <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/blog.html">
+ <!-- Open Graph / Twitter Card -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="블로그 | 신주쿠 카페 브루탈리스트 가이드">
+ <meta property="og:description" content="야, 신주쿠 카페 중에 제대로 된 곳이 어딘지 알고 싶다고? 블로그에서 다 까발린다. 힙한 척 하는 관광객 카페는 거르고, 진짜 맛과 분위기로 승부보는 곳만 전격 공개. 브루탈리스트 감성으로 갈아마신 카페 리뷰. 너 같은 bro를 위한 충격적 진실. 지금 바로 읽어봐라.">
+ <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/blog.html">
+ <meta property="og:image" content="https://shinjuku-cafe.vercel.app/img/blog-og.jpg">
+ <meta property="og:locale" content="ko_KR">
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:site" content="@shinjuku_cafe_brutal">
+ <meta name="twitter:title" content="블로그 | 신주쿠 카페 브루탈리스트 가이드">
+ <meta name="twitter:description" content="관광객용 카페는 그만. 진짜 신주쿠 카페의 맛과 분위기를 원한다면 여기만 봐라.">
+ <meta name="twitter:image" content="https://shinjuku-cafe.vercel.app/img/blog-twitter.jpg">
+ <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- HEADER: 동일한 디자인 시스템 유지 -->
-    <header class="header">
-        <div class="header__inner">
-            <a href="/" class="header__logo">BRUTAL SHINJUKU</a>
-            <!-- Hamburger menu 패턴 유지 (CSS에서 처리) -->
-            <button class="hamburger-menu" aria-label="메뉴 열기" onclick="toggleNav()">
-                <span class="hamburger-menu__line"></span>
-                <span class="hamburger-menu__line"></span>
-                <span class="hamburger-menu__line"></span>
-            </button>
-            <nav class="nav" id="mainNav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="/" class="nav__link">홈</a></li>
-                    <li class="nav__item"><a href="/list" class="nav__link">카페 리스트</a></li>
-                    <li class="nav__item"><a href="/blog" class="nav__link nav__link--active">블로그</a></li>
-                    <li class="nav__item"><a href="/about" class="nav__link">어바웃</a></li>
-                    <li class="nav__item"><a href="/contact" class="nav__link">문의</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+ <!-- HEADER: 동일한 디자인 시스템 유지 -->
+ <header class="header">
+ <div class="header__inner">
+ <a href="/" class="header__logo">BRUTAL SHINJUKU</a>
+ <!-- Hamburger menu 패턴 유지 (CSS에서 처리) -->
+ <button class="hamburger-menu" aria-label="메뉴 열기" onclick="toggleNav()">
+ <span class="hamburger-menu__line"></span>
+ <span class="hamburger-menu__line"></span>
+ <span class="hamburger-menu__line"></span>
+ </button>
+ <nav class="nav" id="mainNav">
+ <ul class="nav__list">
+ <li class="nav__item"><a href="/" class="nav__link">홈</a></li>
+ <li class="nav__item"><a href="/list" class="nav__link">카페 리스트</a></li>
+ <li class="nav__item"><a href="/blog" class="nav__link nav__link--active">블로그</a></li>
+ <li class="nav__item"><a href="/about" class="nav__link">어바웃</a></li>
+ <li class="nav__item"><a href="/contact" class="nav__link">문의</a></li>
+ </ul>
+ </nav>
+ </div>
+ </header>
 
 <main>
 <h1>신주쿠 카페 안내 블로그</h1>

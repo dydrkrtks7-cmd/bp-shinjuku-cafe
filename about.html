@@ -1,286 +1,285 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="bpaas-design-system" content="brutalist-avantgarde">
-    <meta name="bpaas-design-theme" content="kr-neon-void">
-    <meta name="description" content="야, 신주쿠 카페에 대한 모든 정보를 까발려준다. 위치, 분위기, 맛, 가격까지 — 너 같은 bro를 위한 실전 가이드. 힙한 척 하는 블로그는 집어치워. 진짜만 때려박았다.">
-    <meta name="keywords" content="신주쿠 카페 정보, 신주쿠 카페 위치, 신주쿠 카페 가격, 신주쿠 카페 분위기, 신주쿠 카페 추천, 도쿄 신주쿠 카페 지도, 신주쿠 커피 정보, 신주쿠 디저트 정보">
-    <title>신주쿠 카페 정보 | 완벽 가이드 — 브루탈리스트 감성</title>
-    <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/about.html">
-    <!-- Open Graph / Twitter Card -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/about.html">
-    <meta property="og:title" content="신주쿠 카페 정보 — 더 이상 헤매지 마라">
-    <meta property="og:description" content="진짜 신주쿠 카페 정보만 때려박았다. 위치, 가격, 인스타 포인트까지. bro들을 위한 직격 가이드.">
-    <meta property="og:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://shinjuku-cafe.vercel.app/info">
-    <meta property="twitter:title" content="신주쿠 카페 정보 — 더 이상 헤매지 마라">
-    <meta property="twitter:description" content="진짜 신주쿠 카페 정보만 때려박았다. 위치, 가격, 인스타 포인트까지. bro들을 위한 직격 가이드.">
-    <meta property="twitter:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* ===== CORE RESET & VARIABLES ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #0d0d0d;
-            --text: #e0e0e0;
-            --accent: #00ff9d;
-            --accent2: #ff00cc;
-            --accent3: #00ccff;
-            --surface: #1a1a1a;
-            --border: #333;
-            --shadow: 0 4px 0 #000;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Noto Sans KR', sans-serif;
-            --grid: 8px;
-            --radius: 4px;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        /* ===== HAMBURGER MENU (Brutalist) ===== */
-        .nav-toggle { display: none; }
-        .nav-toggle-label {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            width: 48px;
-            height: 48px;
-            background: var(--surface);
-            border: 2px solid var(--accent);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            padding: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
-        }
-        .nav-toggle-label:hover { border-color: var(--accent2); }
-        .nav-toggle-label span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            transition: all 0.3s;
-        }
-        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
-        .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background: var(--surface);
-            border-left: 3px solid var(--accent);
-            display: flex;
-            flex-direction: column;
-            padding: 5rem 2rem;
-            gap: 1.5rem;
-            transition: right 0.4s ease;
-            z-index: 999;
-            box-shadow: -8px 0 0 #000;
-        }
-        .nav-toggle:checked ~ .nav-menu { right: 0; }
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-bottom: 2px solid transparent;
-            padding: 0.5rem 0;
-            transition: all 0.2s;
-        }
-        .nav-menu a:hover { border-bottom-color: var(--accent2); color: var(--accent2); }
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 998;
-            display: none;
-        }
-        .nav-toggle:checked ~ .nav-overlay { display: block; }
-        /* ===== LAYOUT ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        /* ===== HERO ===== */
-        .hero {
-            padding: 6rem 0 3rem;
-            border-bottom: 3px solid var(--accent);
-            margin-bottom: 3rem;
-        }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            color: var(--accent);
-            text-shadow: 4px 4px 0 #000, 0 0 20px var(--accent3);
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-            max-width: 700px;
-            border-left: 4px solid var(--accent2);
-            padding-left: 1rem;
-            font-weight: 700;
-        }
-        /* ===== CARDS GRID ===== */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        .card {
-            background: var(--surface);
-            border: 2px solid var(--border);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
-            position: relative;
-        }
-        .card:hover { border-color: var(--accent2); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
-        .card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--accent3);
-            padding-bottom: 0.5rem;
-        }
-        .card .stat {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent2);
-            font-family: var(--font-display);
-        }
-        .card ul { list-style: none; }
-        .card li {
-            padding: 0.3rem 0;
-            border-bottom: 1px dashed var(--border);
-            font-size: 0.95rem;
-        }
-        .card li::before { content: '▸ '; color: var(--accent3); font-weight: 700; }
-        /* ===== FAQ ===== */
-        .faq-section {
-            margin: 4rem 0;
-            border-top: 3px solid var(--accent);
-            padding-top: 2rem;
-        }
-        .faq-section h2 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: var(--accent2);
-            margin-bottom: 2rem;
-        }
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-        }
-        .faq-item:first-child { border-top: 1px solid var(--border); }
-        .faq-question {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent3);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-        }
-        .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent2); }
-        .faq-answer {
-            margin-top: 1rem;
-            padding-left: 1rem;
-            border-left: 3px solid var(--accent);
-        }
-        /* ===== FOOTER ===== */
-        footer {
-            border-top: 3px solid var(--accent);
-            padding: 2rem 0;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 4rem;
-        }
-        footer a { color: var(--accent3); text-decoration: none; }
-        /* ===== MISC ===== */
-        .label-brutal {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            font-family: var(--font-display);
-            font-weight: 900;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            text-transform: uppercase;
-            margin-right: 0.5rem;
-        }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="야, 신주쿠 카페에 대한 모든 정보를 까발려준다. 위치, 분위기, 맛, 가격까지 — 너 같은 bro를 위한 실전 가이드. 힙한 척 하는 블로그는 집어치워. 진짜만 때려박았다.">
+ <meta name="keywords" content="신주쿠 카페 정보, 신주쿠 카페 위치, 신주쿠 카페 가격, 신주쿠 카페 분위기, 신주쿠 카페 추천, 도쿄 신주쿠 카페 지도, 신주쿠 커피 정보, 신주쿠 디저트 정보">
+ <title>신주쿠 카페 정보 | 완벽 가이드 — 브루탈리스트 감성</title>
+ <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/about.html">
+ <!-- Open Graph / Twitter Card -->
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/about.html">
+ <meta property="og:title" content="신주쿠 카페 정보 | 완벽 가이드 — 브루탈리스트 감성">
+ <meta property="og:description" content="야, 신주쿠 카페에 대한 모든 정보를 까발려준다. 위치, 분위기, 맛, 가격까지 — 너 같은 bro를 위한 실전 가이드. 힙한 척 하는 블로그는 집어치워. 진짜만 때려박았다.">
+ <meta property="og:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
+ <meta property="twitter:card" content="summary_large_image">
+ <meta property="twitter:url" content="https://shinjuku-cafe.vercel.app/info">
+ <meta property="twitter:title" content="신주쿠 카페 정보 — 더 이상 헤매지 마라">
+ <meta property="twitter:description" content="진짜 신주쿠 카페 정보만 때려박았다. 위치, 가격, 인스타 포인트까지. bro들을 위한 직격 가이드.">
+ <meta property="twitter:image" content="https://shinjuku-cafe.vercel.app/og-info.jpg">
+ <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+ <style>
+ /* ===== CORE RESET & VARIABLES ===== */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --bg: #0d0d0d;
+ --text: #e0e0e0;
+ --accent: #00ff9d;
+ --accent2: #ff00cc;
+ --accent3: #00ccff;
+ --surface: #1a1a1a;
+ --border: #333;
+ --shadow: 0 4px 0 #000;
+ --font-display: 'Space Grotesk', sans-serif;
+ --font-body: 'Noto Sans KR', sans-serif;
+ --grid: 8px;
+ --radius: 4px;
+ }
+ html { scroll-behavior: smooth; }
+ body {
+ font-family: var(--font-body);
+ background: var(--bg);
+ color: var(--text);
+ line-height: 1.6;
+ min-height: 100vh;
+ }
+ /* ===== HAMBURGER MENU (Brutalist) ===== */
+ .nav-toggle { display: none; }
+ .nav-toggle-label {
+ position: fixed;
+ top: 1rem;
+ right: 1rem;
+ z-index: 1000;
+ width: 48px;
+ height: 48px;
+ background: var(--surface);
+ border: 2px solid var(--accent);
+ cursor: pointer;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 6px;
+ padding: 10px;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ }
+ .nav-toggle-label:hover { border-color: var(--accent2); }
+ .nav-toggle-label span {
+ display: block;
+ width: 100%;
+ height: 2px;
+ background: var(--accent);
+ transition: all 0.3s;
+ }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+ .nav-menu {
+ position: fixed;
+ top: 0;
+ right: -100%;
+ width: 280px;
+ height: 100vh;
+ background: var(--surface);
+ border-left: 3px solid var(--accent);
+ display: flex;
+ flex-direction: column;
+ padding: 5rem 2rem;
+ gap: 1.5rem;
+ transition: right 0.4s ease;
+ z-index: 999;
+ box-shadow: -8px 0 0 #000;
+ }
+ .nav-toggle:checked ~ .nav-menu { right: 0; }
+ .nav-menu a {
+ color: var(--text);
+ text-decoration: none;
+ font-family: var(--font-display);
+ font-weight: 700;
+ font-size: 1.4rem;
+ text-transform: uppercase;
+ letter-spacing: 0.1em;
+ border-bottom: 2px solid transparent;
+ padding: 0.5rem 0;
+ transition: all 0.2s;
+ }
+ .nav-menu a:hover { border-bottom-color: var(--accent2); color: var(--accent2); }
+ .nav-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0,0,0,0.7);
+ z-index: 998;
+ display: none;
+ }
+ .nav-toggle:checked ~ .nav-overlay { display: block; }
+ /* ===== LAYOUT ===== */
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ /* ===== HERO ===== */
+ .hero {
+ padding: 6rem 0 3rem;
+ border-bottom: 3px solid var(--accent);
+ margin-bottom: 3rem;
+ }
+ .hero h1 {
+ font-family: var(--font-display);
+ font-size: 3rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ letter-spacing: -0.03em;
+ line-height: 1;
+ color: var(--accent);
+ text-shadow: 4px 4px 0 #000, 0 0 20px var(--accent3);
+ }
+ .hero p {
+ font-size: 1.2rem;
+ margin-top: 1.5rem;
+ max-width: 700px;
+ border-left: 4px solid var(--accent2);
+ padding-left: 1rem;
+ font-weight: 700;
+ }
+ /* ===== CARDS GRID ===== */
+ .card-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ margin: 3rem 0;
+ }
+ .card {
+ background: var(--surface);
+ border: 2px solid var(--border);
+ padding: 2rem;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ position: relative;
+ }
+ .card:hover { border-color: var(--accent2); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+ .card h3 {
+ font-family: var(--font-display);
+ font-size: 1.5rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent);
+ margin-bottom: 1rem;
+ border-bottom: 2px solid var(--accent3);
+ padding-bottom: 0.5rem;
+ }
+ .card .stat {
+ font-size: 2rem;
+ font-weight: 900;
+ color: var(--accent2);
+ font-family: var(--font-display);
+ }
+ .card ul { list-style: none; }
+ .card li {
+ padding: 0.3rem 0;
+ border-bottom: 1px dashed var(--border);
+ font-size: 0.95rem;
+ }
+ .card li::before { content: '▸ '; color: var(--accent3); font-weight: 700; }
+ /* ===== FAQ ===== */
+ .faq-section {
+ margin: 4rem 0;
+ border-top: 3px solid var(--accent);
+ padding-top: 2rem;
+ }
+ .faq-section h2 {
+ font-family: var(--font-display);
+ font-size: 2rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent2);
+ margin-bottom: 2rem;
+ }
+ .faq-item {
+ border-bottom: 1px solid var(--border);
+ padding: 1.5rem 0;
+ }
+ .faq-item:first-child { border-top: 1px solid var(--border); }
+ .faq-question {
+ font-weight: 700;
+ font-size: 1.2rem;
+ color: var(--accent3);
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ }
+ .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent2); }
+ .faq-answer {
+ margin-top: 1rem;
+ padding-left: 1rem;
+ border-left: 3px solid var(--accent);
+ }
+ /* ===== FOOTER ===== */
+ footer {
+ border-top: 3px solid var(--accent);
+ padding: 2rem 0;
+ text-align: center;
+ font-size: 0.8rem;
+ color: #666;
+ margin-top: 4rem;
+ }
+ footer a { color: var(--accent3); text-decoration: none; }
+ /* ===== MISC ===== */
+ .label-brutal {
+ display: inline-block;
+ background: var(--accent);
+ color: #000;
+ font-family: var(--font-display);
+ font-weight: 900;
+ font-size: 0.75rem;
+ padding: 0.2rem 0.5rem;
+ text-transform: uppercase;
+ margin-right: 0.5rem;
+ }
+ @media (max-width: 768px) {
+ .hero h1 { font-size: 2rem; }
+ .hero p { font-size: 1rem; }
+ }
+ </style>
+  <meta name="twitter:card" content="summary">
 </head>
 <body>
 
 <main class="container">
-  <section class="hero">
-    <h1>신주쿠 카페 지역 정보 가이드</h1>
-    <p>신주쿠는 대형 상업시설과 좁은 골목 카페가 함께 있는 권역으로 자주 소개됩니다. 카페 스타일이 다양한 만큼 방문 목적에 맞춰 참고할 수 있도록 지역 정보를 정리했습니다.</p>
-  </section>
+ <section class="hero">
+ <h1>신주쿠 카페 지역 정보 가이드</h1>
+ <p>신주쿠는 대형 상업시설과 좁은 골목 카페가 함께 있는 권역으로 자주 소개됩니다. 카페 스타일이 다양한 만큼 방문 목적에 맞춰 참고할 수 있도록 지역 정보를 정리했습니다.</p>
+ </section>
 
-  <h2>신주쿠 카페 스타일 한눈에 보기</h2>
-  <div class="card-grid">
-    <div class="card"><h3>레트로 감성 카페</h3><p>오래된 킷사텐 스타일의 인테리어를 유지한 공간이 골목 안쪽에 남아 있는 경우가 많다고 소개됩니다.</p></div>
-    <div class="card"><h3>테마 카페</h3><p>특정 컨셉을 강하게 내세운 카페들이 모여 있어 사진 촬영을 목적으로 찾는 경우가 많습니다.</p></div>
-    <div class="card"><h3>체인형 대형 카페</h3><p>상업지구 대로변에는 좌석이 넉넉한 체인형 카페가 밀집해 있어 대기 시간이 상대적으로 짧다고 알려져 있습니다.</p></div>
-  </div>
+ <h2>신주쿠 카페 스타일 한눈에 보기</h2>
+ <div class="card-grid">
+ <div class="card"><h3>레트로 감성 카페</h3><p>오래된 킷사텐 스타일의 인테리어를 유지한 공간이 골목 안쪽에 남아 있는 경우가 많다고 소개됩니다.</p></div>
+ <div class="card"><h3>테마 카페</h3><p>특정 컨셉을 강하게 내세운 카페들이 모여 있어 사진 촬영을 목적으로 찾는 경우가 많습니다.</p></div>
+ <div class="card"><h3>체인형 대형 카페</h3><p>상업지구 대로변에는 좌석이 넉넉한 체인형 카페가 밀집해 있어 대기 시간이 상대적으로 짧다고 알려져 있습니다.</p></div>
+ </div>
 
-  <h2>방문 전 체크리스트</h2>
-  <div class="card-grid">
-    <div class="card"><h3>혼잡 시간대</h3><p>점심과 저녁 시간대에는 좌석 대기가 길어질 수 있다는 점을 감안하는 것이 좋습니다.</p></div>
-    <div class="card"><h3>결제 수단</h3><p>매장별로 결제 가능한 수단이 달라 방문 전 확인이 필요합니다.</p></div>
-    <div class="card"><h3>좌석 정책</h3><p>일부 매장은 좌석 이용 시간에 제한을 두는 경우가 있어 안내문을 미리 확인하는 것이 좋습니다.</p></div>
-    <div class="card"><h3>흡연·금연 구역</h3><p>매장 내부와 야외석의 흡연 정책이 다른 경우가 있어 입구 안내를 확인하는 것이 좋습니다.</p></div>
-  </div>
+ <h2>방문 전 체크리스트</h2>
+ <div class="card-grid">
+ <div class="card"><h3>혼잡 시간대</h3><p>점심과 저녁 시간대에는 좌석 대기가 길어질 수 있다는 점을 감안하는 것이 좋습니다.</p></div>
+ <div class="card"><h3>결제 수단</h3><p>매장별로 결제 가능한 수단이 달라 방문 전 확인이 필요합니다.</p></div>
+ <div class="card"><h3>좌석 정책</h3><p>일부 매장은 좌석 이용 시간에 제한을 두는 경우가 있어 안내문을 미리 확인하는 것이 좋습니다.</p></div>
+ <div class="card"><h3>흡연·금연 구역</h3><p>매장 내부와 야외석의 흡연 정책이 다른 경우가 있어 입구 안내를 확인하는 것이 좋습니다.</p></div>
+ </div>
 
-  <p class="stat"><span class="label-brutal">권역 특징</span> 대형 상업지구와 골목 카페 상권이 함께 있는 구역으로 소개됩니다.</p>
+ <p class="stat"><span class="label-brutal">권역 특징</span> 대형 상업지구와 골목 카페 상권이 함께 있는 구역으로 소개됩니다.</p>
 
-  <div class="faq-section">
-    <h2>자주 묻는 질문</h2>
-    <div class="faq-item"><p class="faq-question">신주쿠 카페는 예약이 필요한가요?</p><p class="faq-answer">매장 규모와 시간대에 따라 다르며, 좌석이 한정된 소규모 매장은 대기 시간이 발생할 수 있습니다.</p></div>
-    <div class="faq-item"><p class="faq-question">아침 일찍 문을 여는 카페도 있나요?</p><p class="faq-answer">체인형 카페 위주로 이른 시간에 영업을 시작하는 곳이 있는 것으로 알려져 있으며, 개별 매장 운영시간은 방문 전 확인이 필요합니다.</p></div>
-    <div class="faq-item"><p class="faq-question">좌석에 시간 제한이 있나요?</p><p class="faq-answer">매장에 따라 혼잡 시간대에 이용 시간을 안내하는 경우가 있어 매장 내 공지를 확인하는 것이 좋습니다.</p></div>
-    <div class="faq-item"><p class="faq-question">짐이 많아도 이용할 수 있나요?</p><p class="faq-answer">매장 규모에 따라 수하물 보관 공간이 제한적일 수 있어, 큰 짐이 있다면 여유 좌석이 있는 매장을 고르는 것이 좋습니다.</p></div>
-  </div>
+ <div class="faq-section">
+ <h2>자주 묻는 질문</h2>
+ <div class="faq-item"><p class="faq-question">신주쿠 카페는 예약이 필요한가요?</p><p class="faq-answer">매장 규모와 시간대에 따라 다르며, 좌석이 한정된 소규모 매장은 대기 시간이 발생할 수 있습니다.</p></div>
+ <div class="faq-item"><p class="faq-question">아침 일찍 문을 여는 카페도 있나요?</p><p class="faq-answer">체인형 카페 위주로 이른 시간에 영업을 시작하는 곳이 있는 것으로 알려져 있으며, 개별 매장 운영시간은 방문 전 확인이 필요합니다.</p></div>
+ <div class="faq-item"><p class="faq-question">좌석에 시간 제한이 있나요?</p><p class="faq-answer">매장에 따라 혼잡 시간대에 이용 시간을 안내하는 경우가 있어 매장 내 공지를 확인하는 것이 좋습니다.</p></div>
+ <div class="faq-item"><p class="faq-question">짐이 많아도 이용할 수 있나요?</p><p class="faq-answer">매장 규모에 따라 수하물 보관 공간이 제한적일 수 있어, 큰 짐이 있다면 여유 좌석이 있는 매장을 고르는 것이 좋습니다.</p></div>
+ </div>
 </main>
 
 
