@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (1/2) · shinjuku-cafe</title>
+  <meta name="description" content="shinjuku-cafe에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/posts.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ /* ===== CORE RESET & VARIABLES ===== */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --bg: #0d0d0d;
+ --text: #e0e0e0;
+ --accent: #00ff9d;
+ --accent2: #ff00cc;
+ --accent3: #00ccff;
+ --surface: #1a1a1a;
+ --border: #333;
+ --shadow: 0 4px 0 #000;
+ --font-display: 'Space Grotesk', sans-serif;
+ --font-body: 'Noto Sans KR', sans-serif;
+ --grid: 8px;
+ --radius: 4px;
+ }
+ html { scroll-behavior: smooth; }
+ body {
+ font-family: var(--font-body);
+ background: var(--bg);
+ color: var(--text);
+ line-height: 1.6;
+ min-height: 100vh;
+ }
+ /* ===== HAMBURGER MENU (Brutalist) ===== */
+ .nav-toggle { display: none; }
+ .nav-toggle-label {
+ position: fixed;
+ top: 1rem;
+ right: 1rem;
+ z-index: 1000;
+ width: 48px;
+ height: 48px;
+ background: var(--surface);
+ border: 2px solid var(--accent);
+ cursor: pointer;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 6px;
+ padding: 10px;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ }
+ .nav-toggle-label:hover { border-color: var(--accent2); }
+ .nav-toggle-label span {
+ display: block;
+ width: 100%;
+ height: 2px;
+ background: var(--accent);
+ transition: all 0.3s;
+ }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+ .nav-menu {
+ position: fixed;
+ top: 0;
+ right: -100%;
+ width: 280px;
+ height: 100vh;
+ background: var(--surface);
+ border-left: 3px solid var(--accent);
+ display: flex;
+ flex-direction: column;
+ padding: 5rem 2rem;
+ gap: 1.5rem;
+ transition: right 0.4s ease;
+ z-index: 999;
+ box-shadow: -8px 0 0 #000;
+ }
+ .nav-toggle:checked ~ .nav-menu { right: 0; }
+ .nav-menu a {
+ color: var(--text);
+ text-decoration: none;
+ font-family: var(--font-display);
+ font-weight: 700;
+ font-size: 1.4rem;
+ text-transform: uppercase;
+ letter-spacing: 0.1em;
+ border-bottom: 2px solid transparent;
+ padding: 0.5rem 0;
+ transition: all 0.2s;
+ }
+ .nav-menu a:hover { border-bottom-color: var(--accent2); color: var(--accent2); }
+ .nav-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0,0,0,0.7);
+ z-index: 998;
+ display: none;
+ }
+ .nav-toggle:checked ~ .nav-overlay { display: block; }
+ /* ===== LAYOUT ===== */
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ /* ===== HERO ===== */
+ .hero {
+ padding: 6rem 0 3rem;
+ border-bottom: 3px solid var(--accent);
+ margin-bottom: 3rem;
+ }
+ .hero h1 {
+ font-family: var(--font-display);
+ font-size: 3rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ letter-spacing: -0.03em;
+ line-height: 1;
+ color: var(--accent);
+ text-shadow: 4px 4px 0 #000, 0 0 20px var(--accent3);
+ }
+ .hero p {
+ font-size: 1.2rem;
+ margin-top: 1.5rem;
+ max-width: 700px;
+ border-left: 4px solid var(--accent2);
+ padding-left: 1rem;
+ font-weight: 700;
+ }
+ /* ===== CARDS GRID ===== */
+ .card-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ margin: 3rem 0;
+ }
+ .card {
+ background: var(--surface);
+ border: 2px solid var(--border);
+ padding: 2rem;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ position: relative;
+ }
+ .card:hover { border-color: var(--accent2); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+ .card h3 {
+ font-family: var(--font-display);
+ font-size: 1.5rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent);
+ margin-bottom: 1rem;
+ border-bottom: 2px solid var(--accent3);
+ padding-bottom: 0.5rem;
+ }
+ .card .stat {
+ font-size: 2rem;
+ font-weight: 900;
+ color: var(--accent2);
+ font-family: var(--font-display);
+ }
+ .card ul { list-style: none; }
+ .card li {
+ padding: 0.3rem 0;
+ border-bottom: 1px dashed var(--border);
+ font-size: 0.95rem;
+ }
+ .card li::before { content: '▸ '; color: var(--accent3); font-weight: 700; }
+ /* ===== FAQ ===== */
+ .faq-section {
+ margin: 4rem 0;
+ border-top: 3px solid var(--accent);
+ padding-top: 2rem;
+ }
+ .faq-section h2 {
+ font-family: var(--font-display);
+ font-size: 2rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent2);
+ margin-bottom: 2rem;
+ }
+ .faq-item {
+ border-bottom: 1px solid var(--border);
+ padding: 1.5rem 0;
+ }
+ .faq-item:first-child { border-top: 1px solid var(--border); }
+ .faq-question {
+ font-weight: 700;
+ font-size: 1.2rem;
+ color: var(--accent3);
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ }
+ .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent2); }
+ .faq-answer {
+ margin-top: 1rem;
+ padding-left: 1rem;
+ border-left: 3px solid var(--accent);
+ }
+ /* ===== FOOTER ===== */
+ footer {
+ border-top: 3px solid var(--accent);
+ padding: 2rem 0;
+ text-align: center;
+ font-size: 0.8rem;
+ color: #666;
+ margin-top: 4rem;
+ }
+ footer a { color: var(--accent3); text-decoration: none; }
+ /* ===== MISC ===== */
+ .label-brutal {
+ display: inline-block;
+ background: var(--accent);
+ color: #000;
+ font-family: var(--font-display);
+ font-weight: 900;
+ font-size: 0.75rem;
+ padding: 0.2rem 0.5rem;
+ text-transform: uppercase;
+ margin-right: 0.5rem;
+ }
+ @media (max-width: 768px) {
+ .hero h1 { font-size: 2rem; }
+ .hero p { font-size: 1rem; }
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (1/2) · shinjuku-cafe">
+  <meta property="og:description" content="shinjuku-cafe에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/posts.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 33개 · 1/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0089.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">&quot;지난번에 어디가 불편하다고 하셨죠?&quot; 그 질문을 다시 받았을 때 뭔가 달라졌다고 느꼈다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0090.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">같은 인원, 같은 예산으로 두 번 모였다. 한 번은 자리가 남아 어색했고, 한 번은 자리가 모자라 서 있었다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0091.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">순위가 떨어졌을 때, 당신은 링크부터 손보는 편인가 문서부터 손보는 편인가.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0092.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">공급이 끊긴 날은 예고가 없었다. 다만 그 전 주에 조짐이 있었다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0093.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">&quot;n분의 1로 하실 거죠?&quot; 계산대 앞에서 그 말이 나오면 이미 늦은 것이다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0094.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">표에 적힌 금액과 결제한 금액이 달랐다. 둘 다 틀린 곳은 없었다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0095.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">흔히 하는 말이 있다. 문제가 생기면 원인부터 찾으라는 것. 응급 상황에서는 이 말이 뒤집힌다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0096.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">방음이 잘 되어 있다는 곳에서 옆방 소리가 들렸다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0097.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">금요일 밤 열한 시, 홍대입구역 9번 출구 앞. 사람들이 흩어지는 방향이 네 갈래로 갈렸다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0098.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">후기를 오래 읽다 보면 문장보다 날짜가 먼저 눈에 들어온다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0099.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">기초부터 차례로 쌓으라는 말은 오래된 조언이다. 자동화를 배우는 경우에는 잘 맞지 않는다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0100.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">트래픽은 많을수록 좋다는 말은 오래 통했다. 지금도 대체로 맞다. 다만 이 말이 성립하려면 조건이 하나 붙는다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0101.html">Shinjuku cafe 안내</a>
+        <p class="post-item__summary">마포 셔츠룸을 처음 고르는 사람들이 흔히 저지르는 실수가 있다. 무조건 싼 곳부터 찾는 것이다. 하지만 값이 낮은 곳이 반드시 나쁜 것도 아니고, 비싼 곳이 항상 좋은 것도 아니다. 중요한 것은 자</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0102.html">Shinjuku cafe 안내 및 트렌디한 셔츠룸 예약 가격 비교</a>
+        <p class="post-item__summary">번화한 도심 속에서 여유를 찾는 이들을 위한 Shinjuku cafe 안내 정보는 다양하게 공유되고 있습니다. 이러한 도심형 휴식 공간의 소비 유형은 저녁 시간대의 유흥 문화 시설 선택으로까지 다양</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0103.html">Shinjuku cafe 안내 및 구글 봇 정밀 검진 크롤 버짓 예약 절차</a>
+        <p class="post-item__summary">로컬 비즈니스 사이트의 운영자들은 Shinjuku cafe 안내 페이지 같은 콘텐츠가 왜 검색 엔진에 신속하게 노출되지 않는지 자주 의문점을 제기합니다. 양질의 콘텐츠를 생산하더라도 기술적인 크롤링</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0104.html">Shinjuku cafe 안내와 마포 단체 회식용 대형 룸 노래방 가격 정보</a>
+        <p class="post-item__summary">세련된 감성의 도심 공간을 소개하는 Shinjuku cafe 안내 플랫폼은 국내외 여행객들에게 유용한 참고 자료가 됩니다. 이처럼 공간의 매력을 극대화하여 제안하는 서비스는 직장인들의 친목 도모를 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0105.html">Shinjuku cafe 안내 및 셔츠룸 선택 시 초행자 주의점</a>
+        <p class="post-item__summary">도쿄 여행 도중 유용한 정보를 제공하는 Shinjuku cafe 안내 자료를 읽다 보면 복잡한 도심의 길 찾기 요령에 감탄하게 됩니다. 이와 마찬가지로 서울의 번화가에서 낯선 친목 공간을 처음 방문</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0106.html">Shinjuku cafe 안내 및 마포 홍대 단체 가라오케 예약 가이드</a>
+        <p class="post-item__summary">흔히 늦은 심야 시간에 방문해야만 최고의 친목 모임을 즐길 수 있을 것이라 생각하지만 이는 대표적인 오해 중 하나입니다. 여행자들이 골목 구석구석을 탐색하기 위해 Shinjuku cafe 안내 지도</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0107.html">Shinjuku cafe 안내 통한 구글 알고리즘 고신용 도메인 보증 카드 발급</a>
+        <p class="post-item__summary">온라인 공간에서 신뢰성 있는 도메인을 설계하려면 탄탄한 기술적 규격, 지속적인 이력 관리, 이를 전담할 숙련된 인원 구성이 필수로 요구됩니다. 안정적인 매장 운영을 위해 Shinjuku cafe 안</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0108.html">Shinjuku cafe 안내 참고한 구글 인덱싱 속도 초고속 광회선 대역폭 최적화</a>
+        <p class="post-item__summary">웹사이트를 새로 단장했음에도 검색엔진에 제대로 노출되지 않아 답답함을 느껴보신 적이 있습니까? 길을 잃은 관광객에게 신속한 정보를 주는 Shinjuku cafe 안내 표지판처럼 웹사이트 역시 검색 </p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <span class="pager__current">1</span>
+      <a class="pager__link" href="posts-2.html">2</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>

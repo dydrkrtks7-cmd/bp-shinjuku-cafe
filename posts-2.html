@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (2/2) · shinjuku-cafe</title>
+  <meta name="description" content="shinjuku-cafe에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://shinjuku-cafe-local.pbn-builder.xyz/posts-2.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ /* ===== CORE RESET & VARIABLES ===== */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ :root {
+ --bg: #0d0d0d;
+ --text: #e0e0e0;
+ --accent: #00ff9d;
+ --accent2: #ff00cc;
+ --accent3: #00ccff;
+ --surface: #1a1a1a;
+ --border: #333;
+ --shadow: 0 4px 0 #000;
+ --font-display: 'Space Grotesk', sans-serif;
+ --font-body: 'Noto Sans KR', sans-serif;
+ --grid: 8px;
+ --radius: 4px;
+ }
+ html { scroll-behavior: smooth; }
+ body {
+ font-family: var(--font-body);
+ background: var(--bg);
+ color: var(--text);
+ line-height: 1.6;
+ min-height: 100vh;
+ }
+ /* ===== HAMBURGER MENU (Brutalist) ===== */
+ .nav-toggle { display: none; }
+ .nav-toggle-label {
+ position: fixed;
+ top: 1rem;
+ right: 1rem;
+ z-index: 1000;
+ width: 48px;
+ height: 48px;
+ background: var(--surface);
+ border: 2px solid var(--accent);
+ cursor: pointer;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 6px;
+ padding: 10px;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ }
+ .nav-toggle-label:hover { border-color: var(--accent2); }
+ .nav-toggle-label span {
+ display: block;
+ width: 100%;
+ height: 2px;
+ background: var(--accent);
+ transition: all 0.3s;
+ }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+ .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+ .nav-menu {
+ position: fixed;
+ top: 0;
+ right: -100%;
+ width: 280px;
+ height: 100vh;
+ background: var(--surface);
+ border-left: 3px solid var(--accent);
+ display: flex;
+ flex-direction: column;
+ padding: 5rem 2rem;
+ gap: 1.5rem;
+ transition: right 0.4s ease;
+ z-index: 999;
+ box-shadow: -8px 0 0 #000;
+ }
+ .nav-toggle:checked ~ .nav-menu { right: 0; }
+ .nav-menu a {
+ color: var(--text);
+ text-decoration: none;
+ font-family: var(--font-display);
+ font-weight: 700;
+ font-size: 1.4rem;
+ text-transform: uppercase;
+ letter-spacing: 0.1em;
+ border-bottom: 2px solid transparent;
+ padding: 0.5rem 0;
+ transition: all 0.2s;
+ }
+ .nav-menu a:hover { border-bottom-color: var(--accent2); color: var(--accent2); }
+ .nav-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0,0,0,0.7);
+ z-index: 998;
+ display: none;
+ }
+ .nav-toggle:checked ~ .nav-overlay { display: block; }
+ /* ===== LAYOUT ===== */
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+ /* ===== HERO ===== */
+ .hero {
+ padding: 6rem 0 3rem;
+ border-bottom: 3px solid var(--accent);
+ margin-bottom: 3rem;
+ }
+ .hero h1 {
+ font-family: var(--font-display);
+ font-size: 3rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ letter-spacing: -0.03em;
+ line-height: 1;
+ color: var(--accent);
+ text-shadow: 4px 4px 0 #000, 0 0 20px var(--accent3);
+ }
+ .hero p {
+ font-size: 1.2rem;
+ margin-top: 1.5rem;
+ max-width: 700px;
+ border-left: 4px solid var(--accent2);
+ padding-left: 1rem;
+ font-weight: 700;
+ }
+ /* ===== CARDS GRID ===== */
+ .card-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ margin: 3rem 0;
+ }
+ .card {
+ background: var(--surface);
+ border: 2px solid var(--border);
+ padding: 2rem;
+ box-shadow: var(--shadow);
+ transition: all 0.2s;
+ position: relative;
+ }
+ .card:hover { border-color: var(--accent2); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #000; }
+ .card h3 {
+ font-family: var(--font-display);
+ font-size: 1.5rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent);
+ margin-bottom: 1rem;
+ border-bottom: 2px solid var(--accent3);
+ padding-bottom: 0.5rem;
+ }
+ .card .stat {
+ font-size: 2rem;
+ font-weight: 900;
+ color: var(--accent2);
+ font-family: var(--font-display);
+ }
+ .card ul { list-style: none; }
+ .card li {
+ padding: 0.3rem 0;
+ border-bottom: 1px dashed var(--border);
+ font-size: 0.95rem;
+ }
+ .card li::before { content: '▸ '; color: var(--accent3); font-weight: 700; }
+ /* ===== FAQ ===== */
+ .faq-section {
+ margin: 4rem 0;
+ border-top: 3px solid var(--accent);
+ padding-top: 2rem;
+ }
+ .faq-section h2 {
+ font-family: var(--font-display);
+ font-size: 2rem;
+ font-weight: 900;
+ text-transform: uppercase;
+ color: var(--accent2);
+ margin-bottom: 2rem;
+ }
+ .faq-item {
+ border-bottom: 1px solid var(--border);
+ padding: 1.5rem 0;
+ }
+ .faq-item:first-child { border-top: 1px solid var(--border); }
+ .faq-question {
+ font-weight: 700;
+ font-size: 1.2rem;
+ color: var(--accent3);
+ cursor: pointer;
+ display: flex;
+ justify-content: space-between;
+ }
+ .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent2); }
+ .faq-answer {
+ margin-top: 1rem;
+ padding-left: 1rem;
+ border-left: 3px solid var(--accent);
+ }
+ /* ===== FOOTER ===== */
+ footer {
+ border-top: 3px solid var(--accent);
+ padding: 2rem 0;
+ text-align: center;
+ font-size: 0.8rem;
+ color: #666;
+ margin-top: 4rem;
+ }
+ footer a { color: var(--accent3); text-decoration: none; }
+ /* ===== MISC ===== */
+ .label-brutal {
+ display: inline-block;
+ background: var(--accent);
+ color: #000;
+ font-family: var(--font-display);
+ font-weight: 900;
+ font-size: 0.75rem;
+ padding: 0.2rem 0.5rem;
+ text-transform: uppercase;
+ margin-right: 0.5rem;
+ }
+ @media (max-width: 768px) {
+ .hero h1 { font-size: 2rem; }
+ .hero p { font-size: 1rem; }
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (2/2) · shinjuku-cafe">
+  <meta property="og:description" content="shinjuku-cafe에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://shinjuku-cafe-local.pbn-builder.xyz/posts-2.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 33개 · 2/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0109.html">Shinjuku cafe 안내 연계 구글 신뢰 지수 모발이식 솔루션 분석</a>
+        <p class="post-item__summary">웹사이트 신뢰 지수를 높이려면 첫 단계로 현재 웹페이지 상태를 진단하고 최적화 저해 요인을 분석해야 합니다. 이는 Shinjuku cafe 안내 책자에서 매장 정보를 분석하여 여행 경로를 설정하는 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0110.html">Shinjuku cafe 안내 합정 셔츠룸 단골들이 뽑은 핫플 매거진</a>
+        <p class="post-item__summary">해외 여행을 계획하며 Shinjuku cafe 안내 지도를 찾아보고 가성비 좋은 음료를 비교하는 일은 매우 즐겁습니다. 마찬가지로 국내에서 모임 공간을 정할 때도 예산 대비 만족도를 꼼꼼히 따져보는</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0232.html">Shinjuku cafe 안내 및 연남 클럽 추천정보 확인 체크리스트</a>
+        <p class="post-item__summary">도쿄의 Shinjuku cafe 안내 문구에서 보듯, 지역 특성을 파악하는 것은 모든 여정의 기초입니다. 연남 지역의 클럽을 방문할 때도 마찬가지로 사전에 체크리스트를 점검하는 태도가 필요합니다. </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0233.html">Shinjuku cafe 안내 참고한 합정 셔츠룸 추천정보 초행자 가이드</a>
+        <p class="post-item__summary">타지에서 유명한 Shinjuku cafe 안내 방식을 살펴보면 초행자를 배려한 세밀한 지도가 눈에 띕니다. 이와 같이 처음 합정 셔츠룸을 방문하는 이들 역시 현장 상황에 대한 정확한 정보가 절실합니</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0234.html">Shinjuku cafe 안내를 통해 살펴보는 공덕 가라오케 추천정보</a>
+        <p class="post-item__summary">흔히들 가라오케라고 하면 도심 외곽의 화려한 조명만을 떠올리지만, 이는 실제와 다른 경우가 많습니다. Shinjuku cafe 안내를 참고하여 일본의 카페 문화를 접하듯, 한국의 도심 내 유흥 공간</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0235.html">Shinjuku cafe 안내를 참고한 상수 마사지 추천정보 비교</a>
+        <p class="post-item__summary">성공적인 마사지 경험을 위해서는 몇 가지 충족 조건이 선행되어야 합니다. Shinjuku cafe 안내를 통해 배울 수 있는 일본의 세심한 접객 태도처럼, 상수 지역의 업체들 역시 방문자의 목적을 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0236.html">Shinjuku cafe 안내와 함께 알아보는 망원 노래방 추천정보</a>
+        <p class="post-item__summary">평소 노래방을 자주 찾으시나요? Shinjuku cafe 안내를 읽으며 공간의 분위기가 방문자의 감정에 어떤 영향을 미치는지 생각해 보신 적이 있는지 궁금합니다. 망원 지역에는 각기 다른 개성을 가</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0237.html">Shinjuku cafe 안내 단계별 실천을 통한 홍대 노래방 추천정보</a>
+        <p class="post-item__summary">홍대라는 역동적인 지역에서 노래방을 선택할 때는 체계적인 단계가 필요합니다. 1단계로 Shinjuku cafe 안내를 보듯 지역 내 업체 리스트를 작성하고, 2단계로 본인이 원하는 음향 환경의 기준</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0238.html">Shinjuku cafe 안내 공덕 셔츠룸 추천정보 선택 가이드</a>
+        <p class="post-item__summary">도쿄의 분위기를 즐기는 Shinjuku cafe 안내 문화를 살피다 보면 서울의 야간 문화와 교차하는 지점을 발견합니다. 특히 공덕 지역에서 밤 시간을 보낼 때 어떤 서비스를 선택할지 고민하는 분들</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0239.html">Shinjuku cafe 안내 연남 유흥 추천정보 예약 성공 전략</a>
+        <p class="post-item__summary">평화로운 낮의 모습과 달리 밤이 되면 활기차게 변하는 Shinjuku cafe 안내 스타일의 감성이 곳곳에 스며들어 있습니다. 연남동 일대에서 즐거운 시간을 보내려다 사전 준비 부족으로 발길을 돌리</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0240.html">Shinjuku cafe 안내 마곡 가라오케 추천정보 위치 확인</a>
+        <p class="post-item__summary">최근 새롭게 떠오르는 도심지인 마곡에서 Shinjuku cafe 안내 문화를 연상시키는 공간을 찾는 분들이 많습니다. 특히 회식이나 모임의 정점으로 활용되는 가라오케는 위치와 접근성이 선택의 핵심입</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0241.html">Shinjuku cafe 안내 마곡 유흥 추천정보 초행자 가이드</a>
+        <p class="post-item__summary">처음 마곡 지역을 방문하여 친구들과 늦은 시간까지 즐기려다 당황하는 사례를 종종 봅니다. 도심의 깔끔함 속에 Shinjuku cafe 안내 같은 독특한 문화가 숨겨져 있어 적절한 가이드가 필요합니다</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0242.html">Shinjuku cafe 안내 및 합정 노래방 추천정보 분석</a>
+        <p class="post-item__summary">사람들은 보통 밤이 깊어야 노래방 분위기가 무르익는다고 오해하지만 실제로는 낮 시간대에도 합정 일대의 음향 시설은 충분히 매력적이다. 해외 지인들이 서울을 찾았을 때 Shinjuku cafe 안내 </p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <a class="pager__link" href="posts.html">1</a>
+      <span class="pager__current">2</span>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
